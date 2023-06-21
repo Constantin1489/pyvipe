@@ -12,7 +12,10 @@ if 'EDITOR' in os.environ:
 if 'VISUAL' in os.environ:
     EDITOR = os.environ['VISUAL']
 
-text = sys.stdin.read()
+text = ''
+if sys.stdin.isatty() is False:
+    text = sys.stdin.read()
+
 initial_message = text.encode()
 
 stdin_fd = os.open('/dev/tty', os.O_RDONLY)
