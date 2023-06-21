@@ -3,38 +3,43 @@ import subprocess
 import sys
 import tempfile
 
-EDITOR = 'vi'
-if os.access('/usr/bin/editor', os.X_OK):
-    EDITOR = '/usr/bin/editor'
+def main():
 
-if 'EDITOR' in os.environ:
-    EDITOR = os.environ['EDITOR']
+    EDITOR = 'vi'
+    if os.access('/usr/bin/editor', os.X_OK):
+        EDITOR = '/usr/bin/editor'
 
-if 'VISUAL' in os.environ:
-    EDITOR = os.environ['VISUAL']
+    if 'EDITOR' in os.environ:
+        EDITOR = os.environ['EDITOR']
 
-text = ''
-if sys.stdin.isatty() is False:
-    text = sys.stdin.read()
+    if 'VISUAL' in os.environ:
+        EDITOR = os.environ['VISUAL']
 
-stdin_fd = os.open('/dev/tty', os.O_RDONLY)
-os.dup2(stdin_fd, 0)
-os.close(stdin_fd)
+    text = ''
+    if sys.stdin.isatty() is False:
+        text = sys.stdin.read()
 
-try:
-    with tempfile.NamedTemporaryFile() as tf:
-        tf.write(text.encode())
-        tf.flush()
+    stdin_fd = os.open('/dev/tty', os.O_RDONLY)
+    os.dup2(stdin_fd, 0)
+    os.close(stdin_fd)
 
-        try:
-            subprocess.check_call([EDITOR, tf.name])
+    try:
+        with tempfile.NamedTemporaryFile() as tf:
+            tf.write(text.encode())
+            tf.flush()
 
-        except subprocess.CalledProcessError as e:
-            print(f'{EDITOR} exited nonzero, aborting', file=sys.stderr)
-            sys.exit(1)
+            try:
+                subprocess.check_call([EDITOR, tf.name])
 
-        print(open(tf.name).read(), end='')
+            except subprocess.CalledProcessError as e:
+                print(f'{EDITOR} exited nonzero, aborting', file=sys.stderr)
+                sys.exit(1)
 
-except:
-    print('cannot create tempfile')
-    sys.exit(1)
+            print(open(tf.name).read(), end='')
+
+    except:
+        print('cannot create tempfile')
+        sys.exit(1)
+
+if __name__ == "__main__":
+    main()
