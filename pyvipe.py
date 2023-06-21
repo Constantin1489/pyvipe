@@ -3,6 +3,7 @@ import subprocess
 import sys
 import tempfile
 
+EDITOR = 'vi'
 if os.access('/usr/bin/editor', os.X_OK):
     EDITOR = '/usr/bin/editor'
 
