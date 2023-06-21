@@ -3,7 +3,14 @@ import subprocess
 import sys
 import tempfile
 
-EDITOR = os.environ.get('EDITOR', 'vim')
+if os.access('/usr/bin/editor', os.X_OK):
+    EDITOR = '/usr/bin/editor'
+
+if 'EDITOR' in os.environ:
+    EDITOR = os.environ['EDITOR']
+
+if 'VISUAL' in os.environ:
+    EDITOR = os.environ['VISUAL']
 
 text = sys.stdin.read()
 initial_message = text.encode()
