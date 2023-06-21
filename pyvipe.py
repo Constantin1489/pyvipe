@@ -17,15 +17,24 @@ text = ''
 if sys.stdin.isatty() is False:
     text = sys.stdin.read()
 
-initial_message = text.encode()
-
 stdin_fd = os.open('/dev/tty', os.O_RDONLY)
 os.dup2(stdin_fd, 0)
 os.close(stdin_fd)
 
-with tempfile.NamedTemporaryFile() as tf:
-    tf.write(initial_message)
-    tf.flush()
+try:
+    with tempfile.NamedTemporaryFile() as tf:
+        tf.write(text.encode())
+        tf.flush()
 
-    subprocess.check_call([EDITOR, tf.name])
-    print(open(tf.name).read(), end='')
+        try:
+            subprocess.check_call([EDITOR, tf.name])
+
+        except subprocess.CalledProcessError as e:
+            print(f'{EDITOR} exited nonzero, aborting', file=sys.stderr)
+            sys.exit(1)
+
+        print(open(tf.name).read(), end='')
+
+except:
+    print('cannot create tempfile')
+    sys.exit(1)
