@@ -1,19 +1,21 @@
+"""This module contains pyvipe program."""
 import os
 import subprocess
 import sys
 import tempfile
 
 def main():
+    """Run pyvipe program."""
 
-    EDITOR = 'vi'
+    editor = 'vi'
     if os.access('/usr/bin/editor', os.X_OK):
-        EDITOR = '/usr/bin/editor'
+        editor = '/usr/bin/editor'
 
     if 'EDITOR' in os.environ:
-        EDITOR = os.environ['EDITOR']
+        editor = os.environ['EDITOR']
 
     if 'VISUAL' in os.environ:
-        EDITOR = os.environ['VISUAL']
+        editor = os.environ['VISUAL']
 
     text = ''
     if sys.stdin.isatty() is False:
@@ -24,18 +26,18 @@ def main():
     os.close(stdin_fd)
 
     try:
-        with tempfile.NamedTemporaryFile() as tf:
-            tf.write(text.encode())
-            tf.flush()
+        with tempfile.NamedTemporaryFile() as temporary_file:
+            temporary_file.write(text.encode())
+            temporary_file.flush()
 
             try:
-                subprocess.check_call([EDITOR, tf.name])
+                subprocess.check_call([editor, temporary_file.name])
 
-            except subprocess.CalledProcessError as e:
-                print(f'{EDITOR} exited nonzero, aborting', file=sys.stderr)
+            except subprocess.CalledProcessError:
+                print(f'{editor} exited nonzero, aborting', file=sys.stderr)
                 sys.exit(1)
 
-            print(open(tf.name).read(), end='')
+            print(open(temporary_file.name).read(), end='')
 
     except:
         print('cannot create tempfile')
