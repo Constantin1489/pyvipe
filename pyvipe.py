@@ -37,7 +37,8 @@ def main():
                 print(f'{editor} exited nonzero, aborting', file=sys.stderr)
                 sys.exit(1)
 
-            print(open(temporary_file.name).read(), end='')
+            with open(temporary_file.name, 'r', encoding='utf-8') as edited_pipe:
+                print(edited_pipe.read(), end='')
 
     except:
         print('cannot create tempfile')
