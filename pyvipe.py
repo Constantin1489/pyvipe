@@ -40,8 +40,8 @@ def main():
             with open(temporary_file.name, 'r', encoding='utf-8') as edited_pipe:
                 print(edited_pipe.read(), end='')
 
-    except:
-        print('cannot create tempfile')
+    except PermissionError:
+        print('cannot create tempfile', file=sys.stderr)
         sys.exit(1)
 
 if __name__ == "__main__":
