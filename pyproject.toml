@@ -1,0 +1,37 @@
+[project]
+name = "pyvipe"
+version = "0.1.1"
+authors = [
+    { name="Constantin Hong", email="hongconstantin@gmail.com" },
+]
+maintainers = [
+    { name="Constantin Hong", email="hongconstantin@gmail.com" },
+]
+license = {file = "LICENSE"}
+description = "edit pipe with your editor."
+readme = "README.md"
+requires-python = ">=3.9"
+classifiers=[
+    'Development Status :: 3 - Alpha',
+    'Environment :: Console',
+    "Topic :: Utilities",
+    'Operating System :: MacOS :: MacOS X',
+    'Operating System :: POSIX :: Linux',
+    'License :: OSI Approved :: GNU General Public License v2 (GPLv2)',
+    'Programming Language :: Python',
+    'Programming Language :: Python :: 3.9',
+    'Programming Language :: Python :: 3.10',
+    'Programming Language :: Python :: 3.11',
+]
+
+[project.urls]
+"Homepage" = "https://github.com/Constantin1489/pyvipe"
+"Bug Tracker" = "https://github.com/Constantin1489/pyvipe/issues"
+"Documentation" = "https://github.com/Constantin1489/pyvipe#readme"
+
+[project.entry-points.console_scripts]
+pyvipe = "pyvipe.__main__:main"
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"

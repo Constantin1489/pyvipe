@@ -1,10 +1,12 @@
+#!/usr/bin/env python
+
 """This module contains pyvipe program."""
 import os
 import subprocess
 import sys
 import tempfile
 
-def main():
+def pyvipe():
     """Run pyvipe program."""
 
     editor = 'vi'
@@ -45,4 +47,4 @@ def main():
         sys.exit(1)
 
 if __name__ == "__main__":
-    main()
+    pyvipe()
