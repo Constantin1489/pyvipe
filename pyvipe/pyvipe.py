@@ -7,12 +7,19 @@ import sys
 import tempfile
 import argparse
 
+VERSION_HELP = """pyvipe - 0.1.3
+Copyright (C) 2023 Constantin Hong
+License GPLv2: GNU GPL version 2 <https://gnu.org/licenses/gpl.html>.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law."""
+
 def pyvipe():
     """Run pyvipe program."""
 
     parser = argparse.ArgumentParser(
             prog='pyvipe',
             description='edit pipe.',
+            formatter_class=argparse.RawDescriptionHelpFormatter,
             )
     parser.add_argument(
             '--suffix',
@@ -20,6 +27,12 @@ def pyvipe():
             dest='suffix',
             default=None,
             help='Add suffix to enable syntax highlighting in your editor.',
+            )
+    parser.add_argument(
+            '-V', '--version',
+            action='version',
+            version=VERSION_HELP,
+            help='Print a version number and a license of pyvipe.',
             )
 
     suffix = parser.parse_args(sys.argv[1:]).suffix
