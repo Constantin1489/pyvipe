@@ -10,4 +10,3 @@ _arguments -C \
 {-V,--version}'[Print a version number and a license of pyvipe.]' && rc=0
 
 return rc
-

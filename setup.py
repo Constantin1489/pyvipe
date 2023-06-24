@@ -3,7 +3,7 @@ from setuptools import setup
 
 setup(
     name = 'pyvipe',
-    version = '0.1.2',
+    version = '0.1.3',
     description='edit pipe with your editor.',
     author='Constantin Hong',
     author_email='hongconstantin@gmail.com',
@@ -13,8 +13,8 @@ setup(
     readme = "README.md",
     packages = ['pyvipe'],
     data_files = [
-        ('share/bash-completion/completions', ['completion/bash/pyvipe']),
-        ('share/zsh/site-functions', ['completion/zsh/_pyvipe'])
+        ('share/bash-completion/completions', ['completion/bash/vipe']),
+        ('share/zsh/site-functions', ['completion/zsh/_vipe'])
         ],
     python_requires='>=3.9',
     project_urls = {
