@@ -44,6 +44,12 @@ def pyvipe():
     os.dup2(stdin_fd, 0)
     os.close(stdin_fd)
 
+    out = os.dup(1)
+
+    stdout_fd = os.open('/dev/tty', os.O_WRONLY)
+    os.dup2(stdout_fd, 1)
+    os.close(stdout_fd)
+
     try:
         with tempfile.NamedTemporaryFile(suffix=suffix) as temporary_file:
             temporary_file.write(text.encode())
