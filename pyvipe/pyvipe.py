@@ -63,8 +63,8 @@ def pyvipe():
                 sys.exit(1)
 
             try:
-                with open(temporary_file.name, 'r', encoding='utf-8') as edited_pipe:
-                    print(edited_pipe.read(), end='')
+                with open(temporary_file.name, 'rb') as edited_pipe:
+                    os.write(out, edited_pipe.read())
 
             except PermissionError:
                 print('cannot read tempfile', file=sys.stderr)
