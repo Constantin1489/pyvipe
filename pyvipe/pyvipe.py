@@ -56,8 +56,13 @@ def pyvipe():
                 print(f'{editor} exited nonzero, aborting', file=sys.stderr)
                 sys.exit(1)
 
-            with open(temporary_file.name, 'r', encoding='utf-8') as edited_pipe:
-                print(edited_pipe.read(), end='')
+            try:
+                with open(temporary_file.name, 'r', encoding='utf-8') as edited_pipe:
+                    print(edited_pipe.read(), end='')
+
+            except PermissionError:
+                print('cannot read tempfile', file=sys.stderr)
+                sys.exit(1)
 
     except PermissionError:
         print('cannot create tempfile', file=sys.stderr)
