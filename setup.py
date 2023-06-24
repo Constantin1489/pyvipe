@@ -12,6 +12,10 @@ setup(
     maintainer_email='hongconstantin@gmail.com',
     readme = "README.md",
     packages = ['pyvipe'],
+    data_files = [
+        ('share/bash-completion/completions', ['completion/bash/pyvipe']),
+        ('share/zsh/site-functions', ['completion/zsh/_pyvipe'])
+        ],
     python_requires='>=3.9',
     project_urls = {
         'Documentation': 'https://github.com/Constantin1489/pyvipe#readme',
@@ -32,7 +36,6 @@ setup(
         ],
     entry_points = {
         'console_scripts' : [
-            'pyvipe = pyvipe.__main__:main'
+            'vipe = pyvipe.__main__:main'
         ]
     })
-

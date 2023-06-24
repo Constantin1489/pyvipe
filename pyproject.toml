@@ -30,7 +30,7 @@ classifiers=[
 "Documentation" = "https://github.com/Constantin1489/pyvipe#readme"
 
 [project.entry-points.console_scripts]
-pyvipe = "pyvipe.__main__:main"
+vipe = "pyvipe.__main__:main"
 
 [build-system]
 requires = ["setuptools>=61.0"]

@@ -1,0 +1,13 @@
+#compdef vipe
+
+local curcontext="$curcontext"
+typeset -A opt_args
+
+local rc=1
+_arguments -C \
+{-h,--help}'[Show this help message and exit]' \
+--suffix'[Add suffix to enable syntax highlighting in your editor.]':'<suffix>' \
+{-V,--version}'[Print a version number and a license of pyvipe.]' && rc=0
+
+return rc
+
