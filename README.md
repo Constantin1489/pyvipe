@@ -10,9 +10,9 @@
 
 ## INTRODUCTION
 
-**pyvipe** is a Python version of [vipe](http://joeyh.name/code/moreutils/).
+**pyvipe** is a Python port of [vipe](http://joeyh.name/code/moreutils/).
 
-This project is a result of [trrc](https://github.com/Constantin1489/trrc) feature development.
+This project is a by-product of [trrc](https://github.com/Constantin1489/trrc) feature development.
 
 ## INSTALLATION
 
@@ -27,12 +27,14 @@ This project is a result of [trrc](https://github.com/Constantin1489/trrc) featu
 ## USAGE
 
 ```
-command1 | pyvipe | command2
+command1 | vipe | command2
 ```
+
+Use `--suffix` to apply file syntax highlighting.
 
 ## Environment Variables
 
-**pyvipe** chooses the editor to use via looking for editors which are `/usr/bin/editor`, `EDITOR`, `VISUAL`, in order.
+**pyvipe** chooses the editor to use via looking for editors which are `/usr/bin/editor`, `$EDITOR`, `$VISUAL`, in order.
 
 ## CONTRIBUTION
 
@@ -41,6 +43,3 @@ If it doesn't work as original [vipe](http://joeyh.name/code/moreutils/), then i
 ## Thanks to
 
 [Nick ODell](https://stackoverflow.com/a/76527291/20307768)
-
-## TODO
-* [ ] suffix support
