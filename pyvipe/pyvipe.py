@@ -1,13 +1,30 @@
 #!/usr/bin/env python
-
 """This module contains pyvipe program."""
+
 import os
 import subprocess
 import sys
 import tempfile
+import argparse
 
 def pyvipe():
     """Run pyvipe program."""
+
+    parser = argparse.ArgumentParser(
+            prog='pyvipe',
+            description='edit pipe.',
+            )
+    parser.add_argument(
+            '--suffix',
+            action='store',
+            dest='suffix',
+            default=None,
+            help='Add suffix to enable syntax highlighting in your editor.',
+            )
+
+    suffix = parser.parse_args(sys.argv[1:]).suffix
+    if suffix:
+        suffix = suffix if suffix.startswith('.') else f'.{suffix}'
 
     editor = 'vi'
     if os.access('/usr/bin/editor', os.X_OK):
@@ -28,7 +45,7 @@ def pyvipe():
     os.close(stdin_fd)
 
     try:
-        with tempfile.NamedTemporaryFile() as temporary_file:
+        with tempfile.NamedTemporaryFile(suffix=suffix) as temporary_file:
             temporary_file.write(text.encode())
             temporary_file.flush()
 
