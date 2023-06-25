@@ -34,7 +34,7 @@ Use `--suffix` to apply file syntax highlighting.
 
 ## Environment Variables
 
-**pyvipe** chooses the editor to use via looking for editors which are `/usr/bin/editor`, `$EDITOR`, `$VISUAL`, in order.
+**pyvipe** chooses the editor to use with the environment variable `$VISUAL`. If it is unset, it uses `$EDITOR`. If both are unset, it uses  `/usr/bin/editor` if it exists. If none of those work, it defaults to vi.
 
 ## CONTRIBUTION
 
