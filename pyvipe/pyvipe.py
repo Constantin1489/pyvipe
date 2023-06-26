@@ -87,5 +87,7 @@ def pyvipe():
         print('cannot create tempfile', file=sys.stderr)
         sys.exit(1)
 
+    os.close(out)
+
 if __name__ == "__main__":
     pyvipe()
