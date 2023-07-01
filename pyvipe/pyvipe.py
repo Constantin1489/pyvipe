@@ -69,7 +69,7 @@ def pyvipe():
             temporary_file.flush()
 
             try:
-                subprocess.check_call([editor, temporary_file.name])
+                subprocess.check_call([*editor.split(), temporary_file.name])
 
             except subprocess.CalledProcessError:
                 print(f'{editor} exited nonzero, aborting', file=sys.stderr)
