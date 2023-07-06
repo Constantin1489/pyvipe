@@ -57,6 +57,8 @@ def pyvipe():
     if 'VISUAL' in os.environ:
         editor = os.environ['VISUAL']
 
+
+    # if there is no PIPE, then open an empty file.
     text = ''
     if sys.stdin.isatty() is False:
         text = sys.stdin.read()
