@@ -29,6 +29,12 @@ def pyvipe():
             help='Add suffix to enable syntax highlighting in your editor.',
             )
     parser.add_argument(
+            '--universal-newline',
+            action='store_true',
+            dest='universal_newline',
+            help='Print stdout with a universal newline.',
+            )
+    parser.add_argument(
             '-V', '--version',
             action='version',
             version=VERSION_HELP,
@@ -78,8 +84,11 @@ def pyvipe():
                 sys.exit(1)
 
             try:
-                with open(temporary_file.name, 'rb') as edited_pipe:
-                    os.write(out, edited_pipe.read())
+                # if option is true, then read CRLF PIPE and return \n stdout.
+                newline = None if parsed_arg.universal_newline else ""
+                with open(temporary_file.name, 'r', newline=newline) as edited_pipe:
+                    byte_edited_pipe = edited_pipe.read().encode('ascii')
+                    os.write(out, byte_edited_pipe)
 
             except PermissionError:
                 print('cannot read tempfile', file=sys.stderr)
