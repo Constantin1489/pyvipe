@@ -35,7 +35,9 @@ def pyvipe():
             help='Print a version number and a license of pyvipe.',
             )
 
-    suffix = parser.parse_args(sys.argv[1:]).suffix
+    parsed_arg = parser.parse_args(sys.argv[1:])
+
+    suffix = parsed_arg.suffix
     if suffix:
         suffix = suffix if suffix.startswith('.') else f'.{suffix}'
 
