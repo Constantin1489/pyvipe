@@ -51,7 +51,7 @@ In general, editor can exit with nonzero when you execute some command for vario
 But if you didn't execute the command but the editor exited with nonzero, it may be because
 of wrong user configuration for the editor.
 
-For vi, you can debug it with `EDITOR='vi -u NONE vipe'`
+For vi, you can debug it with `EDITOR='vi -u NONE' vipe`
 
 ## Changelog
 
