@@ -7,6 +7,7 @@ local rc=1
 _arguments -C \
 {-h,--help}'[Show this help message and exit]' \
 --suffix'[Add suffix to enable syntax highlighting in your editor.]':'<suffix>' \
+--universal-newline'[Print stdout with a universal newline.]' \
 {-V,--version}'[Print a version number and a license of pyvipe.]' && rc=0
 
 return rc
