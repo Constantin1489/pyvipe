@@ -89,7 +89,7 @@ def pyvipe():
                 # if option is true, then read CRLF PIPE and return \n stdout.
                 newline = None if parsed_arg.universal_newline else ""
                 with open(temporary_file.name, 'r', newline=newline) as edited_pipe:
-                    byte_edited_pipe = edited_pipe.read().encode('ascii')
+                    byte_edited_pipe = bytes(edited_pipe.read(), 'utf-8')
                     os.write(out, byte_edited_pipe)
 
             except PermissionError:
