@@ -57,7 +57,8 @@ For vi, you can debug it with `EDITOR='vi -u NONE' vipe`
 
 | Version | Note                     | 
 |:--------|:-------------------------|
-| HEAD    | fix UnicodeEncodeError. | 
+| HEAD    | fix changing encoding. | 
+| 0.2.1    | fix UnicodeEncodeError. | 
 | 0.2.0    | add universal-newline option. support editor variable with option. | 
 | 0.1.3    | fix shell completion. | 
 | 0.1.2    | add suffix option. fix error. | 

@@ -7,7 +7,7 @@ import sys
 import tempfile
 import argparse
 
-VERSION_HELP = """pyvipe - 0.2.1
+VERSION_HELP = """pyvipe - 0.2.2
 Copyright (C) 2023 Constantin Hong
 License GPLv2: GNU GPL version 2 <https://gnu.org/licenses/gpl.html>.
 This is free software: you are free to change and redistribute it.
