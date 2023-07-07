@@ -12,6 +12,8 @@ Copyright (C) 2023 Constantin Hong
 License GPLv2: GNU GPL version 2 <https://gnu.org/licenses/gpl.html>.
 This is free software: you are free to change and redistribute it.
 There is NO WARRANTY, to the extent permitted by law."""
+WINDOWS_LINE_ENDING = b'\r\n'
+UNIX_LINE_ENDING = b'\n'
 
 def pyvipe():
     """Run pyvipe program."""
@@ -86,11 +88,15 @@ def pyvipe():
                 sys.exit(1)
 
             try:
-                # if option is true, then read CRLF PIPE and return \n stdout.
-                newline = None if parsed_arg.universal_newline else ""
-                with open(temporary_file.name, 'r', newline=newline) as edited_pipe:
-                    byte_edited_pipe = bytes(edited_pipe.read(), 'utf-8')
-                    os.write(out, byte_edited_pipe)
+                with open(temporary_file.name, 'rb') as edited_pipe:
+                    binary_edited_pipe = edited_pipe.read()
+
+                    # if option is true, then read CRLF PIPE and return LF(\n) stdout.
+                    if parsed_arg.universal_newline:
+                        # prevent pyvipe to change encoding.
+                        binary_edited_pipe = binary_edited_pipe.replace(WINDOWS_LINE_ENDING, UNIX_LINE_ENDING)
+
+                    os.write(out, binary_edited_pipe)
 
             except PermissionError:
                 print('cannot read tempfile', file=sys.stderr)
